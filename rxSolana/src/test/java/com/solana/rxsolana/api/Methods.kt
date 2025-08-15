@@ -81,7 +81,7 @@ class Methods {
 
     @Test
     fun TestGetAccountInfo() {
-        val result = solana.api.getAccountInfo(SolanaAccountSerializer(AccountInfoData.serializer()), PublicKey("AaXs7cLGcSVAsEt8QxstVrqhLhYN2iGhFNRemwYnHitV")).blockingGet()
+        val result = solana.api.getAccountInfo(AccountInfoData.serializer(), PublicKey("AaXs7cLGcSVAsEt8QxstVrqhLhYN2iGhFNRemwYnHitV")).blockingGet()
         Assert.assertNotNull(result)
     }
 

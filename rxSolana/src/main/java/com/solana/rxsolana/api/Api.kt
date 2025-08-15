@@ -115,7 +115,7 @@ fun Api.getStakeActivation(publicKey: PublicKey, epoch: Long): Single<StakeActiv
     }
 }
 
-inline fun <reified T>Api.getAccountInfo(
+inline fun <reified T : Any>Api.getAccountInfo(
     serializer: KSerializer<T>,
     publicKey: PublicKey
 ): Single<T> {

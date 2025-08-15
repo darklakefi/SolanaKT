@@ -9,12 +9,12 @@ group 'com.solana'
 version '2.1.1'
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion '30.0.2'
+    namespace 'com.solana.solana'
+    compileSdkVersion 36
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 33
+        targetSdkVersion 36
         versionCode 1
         versionName version
 
@@ -40,12 +40,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
+    }
+    
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -59,17 +63,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3'
 
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0'
 
 }
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifact("$buildDir/outputs/aar/solana-release.aar")  {
+            artifact(layout.buildDirectory.file("outputs/aar/solana-release.aar"))  {
                 builtBy tasks.getByName("assemble")
             }
             artifactId 'solana'

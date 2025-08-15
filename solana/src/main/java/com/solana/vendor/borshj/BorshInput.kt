@@ -176,9 +176,10 @@ interface BorshInput {
         throw AssertionError("Optional type has been erased and cannot be reconstructed")
     }
 
-    fun <T> readOptional(borsh: Borsh, klass: Class<*>): Optional<T>? {
+    fun <T : Any> readOptional(borsh: Borsh, klass: Class<*>): Optional<T>? {
         val isPresent = readU8().toInt() != 0
-        return if (isPresent) Optional.of(this.read(borsh, klass)) else Optional.empty()
+        @Suppress("UNCHECKED_CAST")
+        return if (isPresent) Optional.of(this.read(borsh, klass) as T) else Optional.empty()
     }
 
     fun read(): Byte
