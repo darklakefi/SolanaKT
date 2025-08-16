@@ -59,6 +59,23 @@ suspend fun Api.sendRawTransaction(
     }
 }
 
+suspend fun Api.sendRawTransaction(
+    transaction: ByteArray,
+    options: TransactionOptions
+): Result<String> {
+    val base64Trx: String = Base64.toBase64String(transaction)
+
+    return router.makeRequestResult(
+        SendTransactionRequest(base64Trx, options),
+        String.serializer()
+    ).let { result ->
+        @Suppress("UNCHECKED_CAST")
+        if (result.isSuccess && result.getOrNull() == null)
+            Result.failure(Error("Can not send transaction"))
+        else result as Result<String> // safe cast, null case handled above
+    }
+}
+
 fun Api.sendRawTransaction(
     transaction: ByteArray,
     onComplete: ((Result<String>) -> Unit)
