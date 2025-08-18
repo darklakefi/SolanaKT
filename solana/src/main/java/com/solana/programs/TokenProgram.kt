@@ -94,7 +94,7 @@ object TokenProgram : Program() {
             freezeAuthority != null -> 1
             else -> 0
         }.toByte())
-        buffer.put(freezeAuthority?.pubkey ?: ByteArray(32) { 0x0 })
+        buffer.put(freezeAuthority?.pubkey ?: ByteArray(32))
 
         return createTransactionInstruction(
             PROGRAM_ID,

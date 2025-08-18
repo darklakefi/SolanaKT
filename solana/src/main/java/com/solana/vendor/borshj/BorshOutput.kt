@@ -5,6 +5,7 @@ import java.math.BigInteger
 import java.nio.charset.StandardCharsets
 import java.util.*
 
+
 @Suppress("UNCHECKED_CAST")
 interface BorshOutput<Self> {
     fun write(borsh: Borsh, obj: Any): Self {

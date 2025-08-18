@@ -27,10 +27,9 @@ class Borsh {
         return if (klass == null) {
             false
         } else {
-            Arrays.stream(klass.interfaces)
-                .anyMatch {
-                        iface: Class<*> -> iface == BorshCodable::class.java
-                } || isSerializable(klass.superclass)
+            klass.interfaces.any { iface: Class<*> -> 
+                iface == BorshCodable::class.java
+            } || isSerializable(klass.superclass)
         }
     }
 
