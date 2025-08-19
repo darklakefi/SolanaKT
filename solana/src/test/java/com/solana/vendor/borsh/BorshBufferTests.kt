@@ -4,6 +4,7 @@ import com.solana.vendor.borshj.Borsh
 import com.solana.vendor.borshj.BorshBuffer
 import com.solana.vendor.borshj.BorshBuffer.Companion.allocate
 import com.solana.vendor.borshj.BorshBuffer.Companion.wrap
+import com.solana.vendor.borshj.Optional
 import org.junit.Assert
 import org.junit.Test
 import java.math.BigInteger
